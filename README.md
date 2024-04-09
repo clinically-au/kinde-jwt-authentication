@@ -107,12 +107,6 @@ export default defineConfig({
 
 Note, the first time you run your React app, you may be prompted for your administrator password to create a development certificate.
 
-Also add this to ```vite.config.js``` to use the ```.env``` file:
-```typescript
-  define: {"process.env":process.env},
-````
-
-
 ### Modify the app to call a protected API
 Just as an example, modify the ```LoggedIn.jsx``` component to call the protected /weatherforecast API we created above.
 
