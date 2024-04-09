@@ -1,0 +1,6 @@
+@KindeJwtExample_HostAddress = http://localhost:5079
+
+GET {{KindeJwtExample_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
