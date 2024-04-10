@@ -6,24 +6,26 @@ export default function LoggedIn() {
   // Get the auth token from Kinde and store it in the token variable
   // After that, call the protected API using the authorization token
   const [apiResponse, setApiResponse] = useState(null);
+  
   useEffect(() => {
-    const token = getToken();
-    fetch("http://localhost:7204/weatherforecast", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setApiResponse(data); // Store the response in the state variable
-        })
-        .catch((err) => console.error(err));
-  }, [getToken]);
-  
-  
-  
+    async function fetchData() {
+      const token = await getToken();
+
+      fetch("https://localhost:7204/weatherforecast", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+          .then((res) => res.json())
+          .then((data) => {
+            setApiResponse(data); // Store the response in the state variable
+          })
+          .catch((err) => console.error(err));
+    }
+
+    fetchData();
+  }, [getToken])
 
   return (
     <>
@@ -59,15 +61,21 @@ export default function LoggedIn() {
         <div className="container">
           <div className="card start-hero">
             <p className="text-body-2 start-hero-intro">Woohoo!</p>
-            <p className="text-display-2">
-              Your authentication is all sorted.
-              <br />
-              Build the important stuff.
-            </p>
           </div>
           <section className="next-steps-section">
-            <h2 className="text-heading-1">Next steps for you</h2>
-          </section>
+              <ul>
+                {apiResponse
+                    ? apiResponse.map((item, index) => (
+                        <li key={index}>
+                          Date: {item.date} <br/>
+                          Temperature: {item.temperatureC}<br/>
+                          Summary: {item.summary}<br/><br/>
+                        </li>
+                    ))
+                    : "Loading..."
+                }
+              </ul>
+           </section>
         </div>
       </main>
 
