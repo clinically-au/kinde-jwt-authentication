@@ -1,7 +1,7 @@
 # Example of Integrating Kinde Authentication with an ASP.NET Core Web API Project and a React Client
 This is an example of integrating [Kinde Authentication](https://www.kinde.com) with an ASPNET Core Web API Project and a React Client. The example demonstrates how to set up a Web API project and a React client with Kinde to provide the authentication.
 
-First of all, create both a M2M application and a Front End application in Kinde. Create an API, and give the Front End application access to the API.
+First of all, a Front End application in Kinde. Create an API, and give the Front End application access to the API. Also give the app access to the Kinde Management API.
 
 Note down the Client ID, Client Secrets, and API audience values for each.
 
@@ -18,10 +18,10 @@ Add the following configuration section to your ```appSettings.json```:
 ```json 
 {
   "Kinde": {
-    "Authority": <YOUR_KINDE_DOMAIN>,
-    "ManagementApiClientId" : <YOUR_M2M_APP_CLIENT_ID>,
-    "ManagementApiClientSecret" : <YOUR_M2M_APP_CLIENT_ID>,
-    "JwtAudience": <AUDIENCE_FOR_YOUR_API>
+    "Domain": "<YOUR_KINDE_DOMAIN>", // Needs to be the same as the domain in your Kinde back end app
+    "ClientId" : "<YOUR_KINDE_APP_CLIENT_ID>",
+    "ClientSecret" : "<YOUR_KINDE_APP_CLIENT_ID>",
+    "JwtAudience": "<AUDIENCE_FOR_YOUR_API>"
 }
 ```
 
