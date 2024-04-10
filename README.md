@@ -118,17 +118,24 @@ Just as an example, modify the ```LoggedIn.jsx``` component to call the protecte
 ```jsx
 const [apiResponse, setApiResponse] = useState(null);
 useEffect(() => {
-    const token = getToken();
-    fetch("http://localhost:7204/weatherforecast", {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    })
-    .then((res) => res.json())
-    .then((data) => {setApiResponse(data)})
-    .catch((err) => console.error(err));
-}, [getToken]);
+    async function fetchData() {
+        const token = await getToken();
+
+        fetch("https://localhost:7204/weatherforecast", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setApiResponse(data); // Store the response in the state variable
+            })
+            .catch((err) => console.error(err));
+    }
+
+    fetchData();
+}, [getToken])
 ```
 
 Note you have to update the port in the URL above to match the port your Web API is running on.
