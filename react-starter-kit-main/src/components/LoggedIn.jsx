@@ -1,4 +1,5 @@
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+import {useEffect, useState} from "react";
 
 export default function LoggedIn() {
   const { user, logout, getToken } = useKindeAuth();
