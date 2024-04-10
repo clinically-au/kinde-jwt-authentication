@@ -22,6 +22,10 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Add Authorization
+// Should also add the Permission policies as per the Blazor example
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

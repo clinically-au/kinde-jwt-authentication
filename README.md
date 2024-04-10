@@ -43,6 +43,11 @@ builder.Services.AddCors(options =>
 });
 ```
 
+Add authorization services:
+```csharp
+builder.Services.AddAuthorization();
+```
+
 Add the CORS policy and authorization before mapping any endpoints:
 ```csharp
 app.UseAuthorization();
